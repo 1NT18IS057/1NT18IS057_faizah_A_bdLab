@@ -1,3 +1,8 @@
+LAB 2
+
+Date: 31st March,2021
+
+
 admin1@Admin:~$ mongo
 MongoDB shell version v4.4.4
 connecting to: mongodb://127.0.0.1:27017/?compressors=disabled&gssapiServiceName=mongodb
