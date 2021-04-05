@@ -1,0 +1,135 @@
+admin1@Admin:~$ mongo
+MongoDB shell version v4.4.4
+connecting to: mongodb://127.0.0.1:27017/?compressors=disabled&gssapiServiceName=mongodb
+Implicit session: session { "id" : UUID("c0f433ea-7561-4414-b343-55831b55e9fa") }
+MongoDB server version: 4.4.4
+---
+The server generated these startup warnings when booting: 
+        2021-03-31T09:08:43.050+05:30: Using the XFS filesystem is strongly recommended with the WiredTiger storage engine. See http://dochub.mongodb.org/core/prodnotes-filesystem
+        2021-03-31T09:08:44.678+05:30: Access control is not enabled for the database. Read and write access to data and configuration is unrestricted
+---
+---
+        Enable MongoDB's free cloud-based monitoring service, which will then receive and display
+        metrics about your deployment (disk utilization, CPU, operation statistics, etc).
+
+        The monitoring data will be available on a MongoDB website with a unique URL accessible to you
+        and anyone you share the URL with. MongoDB may use this information to make product
+        improvements and to suggest MongoDB products and deployment options to you.
+
+        To enable free monitoring, run the following command: db.enableFreeMonitoring()
+        To permanently disable this reminder, run the following command: db.disableFreeMonitoring()
+---
+> bds
+uncaught exception: ReferenceError: bds is not defined :
+@(shell):1:1
+> dbs
+uncaught exception: ReferenceError: dbs is not defined :
+@(shell):1:1
+> db
+test
+> show dbs
+Company  0.000GB
+admin    0.000GB
+college  0.000GB
+config   0.000GB
+local    0.000GB
+> use Company
+switched to db Company
+> show collections
+empDetails
+> db.empDetails.aggregate([{}])
+uncaught exception: Error: command failed: {
+	"ok" : 0,
+	"errmsg" : "A pipeline stage specification object must contain exactly one field.",
+	"code" : 40323,
+	"codeName" : "Location40323"
+} : aggregate failed :
+_getErrorWithCode@src/mongo/shell/utils.js:25:13
+doassert@src/mongo/shell/assert.js:18:14
+_assertCommandWorked@src/mongo/shell/assert.js:639:17
+assert.commandWorked@src/mongo/shell/assert.js:729:16
+DB.prototype._runAggregate@src/mongo/shell/db.js:266:5
+DBCollection.prototype.aggregate@src/mongo/shell/collection.js:1058:12
+@(shell):1:1
+> 
+> 
+> db.empDetails.aggregate([])
+{ "_id" : 1, "Fname" : "Rohan", "Lname" : "Sharma", "Age" : 26, "Email" : "rohan@gmail.com", "Phone" : "9007008001", "exp" : 5 }
+{ "_id" : 2, "Fname" : "Rachel", "Lname" : "Green", "Age" : 23, "Email" : "rachel@gmail.com", "Phone" : "9997658001", "exp" : 6 }
+{ "_id" : 3, "Fname" : "Aditya", "Lname" : "Nayak", "Age" : 22, "Email" : "aditya@gmail.com", "Phone" : "964574324", "exp" : 3 }
+{ "_id" : 4, "Fname" : "Joey", "Lname" : "Tribbiani", "Age" : 27, "Email" : "joey@gmail.com", "Phone" : "989697856", "exp" : 5 }
+{ "_id" : 5, "Fname" : "Chavi", "Lname" : "Singh", "Age" : 20, "Email" : "chavi@gmail.com", "Phone" : "7645747889", "exp" : 5 }
+{ "_id" : 6, "Fname" : "Jothsna", "Lname" : "Sai", "Age" : 22, "Email" : "jothsna@gmail.com", "Phone" : "98776508001", "exp" : 6 }
+{ "_id" : 7, "Fname" : "Aishwarya", "Lname" : "G", "Age" : 19, "Email" : "aishwarya@gmail.com", "Phone" : "998345901", "exp" : 3 }
+{ "_id" : 8, "Fname" : "Hazel", "Lname" : "Grace", "Age" : 18, "Email" : "hazel@gmail.com", "Phone" : "9647978624", "exp" : 1 }
+{ "_id" : 9, "Fname" : "Apoorva", "Lname" : "Vinod", "Age" : 25, "Email" : "apoorva@gmail.com", "Phone" : "9878676856", "exp" : 4 }
+{ "_id" : 10, "Fname" : "Bhyravi", "Lname" : "C", "Age" : 27, "Email" : "bhyravi@gmail.com", "Phone" : "96777889", "exp" : 6 }
+> db.empDetails({$match:{Age:26}})
+uncaught exception: TypeError: db.empDetails is not a function :
+@(shell):1:1
+> 
+> {$match:{Age:26}}
+26
+> {$match:{Age:25}}
+25
+> 
+> {$match:{Age:{$gt:25}}}
+25
+> {$sort:{Age:-1}}
+-1
+> db.empDetails.aggregate([{$match:{Age:{$gt:25}}}])
+{ "_id" : 1, "Fname" : "Rohan", "Lname" : "Sharma", "Age" : 26, "Email" : "rohan@gmail.com", "Phone" : "9007008001", "exp" : 5 }
+{ "_id" : 4, "Fname" : "Joey", "Lname" : "Tribbiani", "Age" : 27, "Email" : "joey@gmail.com", "Phone" : "989697856", "exp" : 5 }
+{ "_id" : 10, "Fname" : "Bhyravi", "Lname" : "C", "Age" : 27, "Email" : "bhyravi@gmail.com", "Phone" : "96777889", "exp" : 6 }
+> 
+> 
+> db.empDetails.aggregate([{$match:{Age:26}}])
+{ "_id" : 1, "Fname" : "Rohan", "Lname" : "Sharma", "Age" : 26, "Email" : "rohan@gmail.com", "Phone" : "9007008001", "exp" : 5 }
+> 
+> 
+> db.empDetails.aggregate([{$sort:{Age:-1}}])
+{ "_id" : 4, "Fname" : "Joey", "Lname" : "Tribbiani", "Age" : 27, "Email" : "joey@gmail.com", "Phone" : "989697856", "exp" : 5 }
+{ "_id" : 10, "Fname" : "Bhyravi", "Lname" : "C", "Age" : 27, "Email" : "bhyravi@gmail.com", "Phone" : "96777889", "exp" : 6 }
+{ "_id" : 1, "Fname" : "Rohan", "Lname" : "Sharma", "Age" : 26, "Email" : "rohan@gmail.com", "Phone" : "9007008001", "exp" : 5 }
+{ "_id" : 9, "Fname" : "Apoorva", "Lname" : "Vinod", "Age" : 25, "Email" : "apoorva@gmail.com", "Phone" : "9878676856", "exp" : 4 }
+{ "_id" : 2, "Fname" : "Rachel", "Lname" : "Green", "Age" : 23, "Email" : "rachel@gmail.com", "Phone" : "9997658001", "exp" : 6 }
+{ "_id" : 3, "Fname" : "Aditya", "Lname" : "Nayak", "Age" : 22, "Email" : "aditya@gmail.com", "Phone" : "964574324", "exp" : 3 }
+{ "_id" : 6, "Fname" : "Jothsna", "Lname" : "Sai", "Age" : 22, "Email" : "jothsna@gmail.com", "Phone" : "98776508001", "exp" : 6 }
+{ "_id" : 5, "Fname" : "Chavi", "Lname" : "Singh", "Age" : 20, "Email" : "chavi@gmail.com", "Phone" : "7645747889", "exp" : 5 }
+{ "_id" : 7, "Fname" : "Aishwarya", "Lname" : "G", "Age" : 19, "Email" : "aishwarya@gmail.com", "Phone" : "998345901", "exp" : 3 }
+{ "_id" : 8, "Fname" : "Hazel", "Lname" : "Grace", "Age" : 18, "Email" : "hazel@gmail.com", "Phone" : "9647978624", "exp" : 1 }
+> 
+> 
+> db.empDetails.aggregate([{$count:"$Age"}])
+uncaught exception: Error: command failed: {
+	"ok" : 0,
+	"errmsg" : "the count field cannot be a $-prefixed path",
+	"code" : 40158,
+	"codeName" : "Location40158"
+} : aggregate failed :
+_getErrorWithCode@src/mongo/shell/utils.js:25:13
+doassert@src/mongo/shell/assert.js:18:14
+_assertCommandWorked@src/mongo/shell/assert.js:639:17
+assert.commandWorked@src/mongo/shell/assert.js:729:16
+DB.prototype._runAggregate@src/mongo/shell/db.js:266:5
+DBCollection.prototype.aggregate@src/mongo/shell/collection.js:1058:12
+@(shell):1:1
+> 
+> 
+> 
+> db.empDetails.aggregate([{$group:{_id:{Age:"$Age",Fname:"$Fname"}}])
+... 
+... 
+> 
+> db.empDetails.aggregate([{$group:{_id:"$Age"}}])
+{ "_id" : 25 }
+{ "_id" : 23 }
+{ "_id" : 26 }
+{ "_id" : 19 }
+{ "_id" : 20 }
+{ "_id" : 22 }
+{ "_id" : 18 }
+{ "_id" : 27 }
+> 
+
+

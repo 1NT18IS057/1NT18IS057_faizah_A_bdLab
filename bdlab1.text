@@ -1,0 +1,580 @@
+admin1@admin1-HP-280-G4-MT-Business-PC:~$ mongo
+MongoDB shell version v4.4.4
+connecting to: mongodb://127.0.0.1:27017/?compressors=disabled&gssapiServiceName=mongodb
+Implicit session: session { "id" : UUID("c74b9122-8eee-4bbc-8920-17e4a0d2f3af") }
+MongoDB server version: 4.4.4
+---
+The server generated these startup warnings when booting: 
+        2021-03-24T08:52:22.847+05:30: Using the XFS filesystem is strongly recommended with the WiredTiger storage engine. See http://dochub.mongodb.org/core/prodnotes-filesystem
+        2021-03-24T08:52:27.307+05:30: Access control is not enabled for the database. Read and write access to data and configuration is unrestricted
+---
+---
+        Enable MongoDB's free cloud-based monitoring service, which will then receive and display
+        metrics about your deployment (disk utilization, CPU, operation statistics, etc).
+
+        The monitoring data will be available on a MongoDB website with a unique URL accessible to you
+        and anyone you share the URL with. MongoDB may use this information to make product
+        improvements and to suggest MongoDB products and deployment options to you.
+
+        To enable free monitoring, run the following command: db.enableFreeMonitoring()
+        To permanently disable this reminder, run the following command: db.disableFreeMonitoring()
+---
+> show dbs
+admin   0.000GB
+config  0.000GB
+db      0.000GB
+local   0.000GB
+mydb    0.000GB
+newdb   0.000GB
+test    0.000GB
+> use company
+switched to db company
+> db.createCollection(“empDetails”);
+uncaught exception: SyntaxError: illegal character :
+@(shell):1:20
+> db.createCollection(“empDetails”)
+uncaught exception: SyntaxError: illegal character :
+@(shell):1:20
+> 
+> db.createCollection(“empDetails”)
+uncaught exception: SyntaxError: illegal character :
+@(shell):1:20
+> db.createCollection(“empDetails”)
+uncaught exception: SyntaxError: illegal character :
+@(shell):1:20
+> show collections
+> db.createCollection("empDetails")
+{ "ok" : 1 }
+> db.empDetails.insertMany({_id:1,Fname:"Rohan",Lname:"Sharma",Age:26,Email:"rohan@gmail.com",Phone:"9007008001",exp:5},_id:1,Fname:"Rohan",Lname:"Sharma",Age:26,Email:"rohan@gmail.com",Phone:"9007008001",exp:5},
+uncaught exception: SyntaxError: missing ) after argument list :
+@(shell):1:121
+> 
+> db.empDetails.insertMany([{_id:1,Fname:"Rohan",Lname:"Sharma",Age:26,Email:"rohan@gmail.com",Phone:"9007008001",exp:5},{_id:2,Fname:"Rachel",Lname:"Green",Age:23,Email:"rachel@gmail.com",Phone:"9997658001",exp:6},{_id:3,Fname:"Aditya",Lname:"Nayak",Age:22,Email:"aditya@gmail.com",Phone:"964574324",exp:3},{_id:4,Fname:"Joey",Lname:"Tribbiani",Age:27,Email:"joey@gmail.com",Phone:"989697856",exp:5},{_id:5,Fname:"Chavi",Lname:"Singh",Age:20,Email:"chavi@gmail.com",Phone:"7645747889",exp:5}])
+{ "acknowledged" : true, "insertedIds" : [ 1, 2, 3, 4, 5 ] }
+> 
+> db.empDetails.insertMany([{_id:6,Fname:"Jothsna",Lname:"Sai",Age:22,Email:"jothsna@gmail.com",Phone:"98776508001",exp:6},{_id:7,Fname:"Aishwarya",Lname:"G",Age:19,Email:"aishwarya@gmail.com",Phone:"998345901",exp:3},{_id:8,Fname:"Hazel",Lname:"Grace",Age:18,Email:"hazel@gmail.com",Phone:"9647978624",exp:1},{_id:9,Fname:"Apoorva",Lname:"Vinod",Age:25,Email:"apoorva@gmail.com",Phone:"9878676856",exp:4},{_id:10,Fname:"Bhyravi",Lname:"C",Age:27,Email:"bhyravi@gmail.com",Phone:"96777889",exp:6}])
+{ "acknowledged" : true, "insertedIds" : [ 6, 7, 8, 9, 10 ] }
+> 
+> 
+> db.createCollection("test")
+{ "ok" : 1 }
+> db.test.find()
+> db.test.find()
+> db.test.find({id)
+... 
+... ;
+... 
+... 
+> 
+> 
+> db.test.drop()
+true
+> db.empDetails.find().pretty()
+{
+	"_id" : 1,
+	"Fname" : "Rohan",
+	"Lname" : "Sharma",
+	"Age" : 26,
+	"Email" : "rohan@gmail.com",
+	"Phone" : "9007008001",
+	"exp" : 5
+}
+{
+	"_id" : 2,
+	"Fname" : "Rachel",
+	"Lname" : "Green",
+	"Age" : 23,
+	"Email" : "rachel@gmail.com",
+	"Phone" : "9997658001",
+	"exp" : 6
+}
+{
+	"_id" : 3,
+	"Fname" : "Aditya",
+	"Lname" : "Nayak",
+	"Age" : 22,
+	"Email" : "aditya@gmail.com",
+	"Phone" : "964574324",
+	"exp" : 3
+}
+{
+	"_id" : 4,
+	"Fname" : "Joey",
+	"Lname" : "Tribbiani",
+	"Age" : 27,
+	"Email" : "joey@gmail.com",
+	"Phone" : "989697856",
+	"exp" : 5
+}
+{
+	"_id" : 5,
+	"Fname" : "Chavi",
+	"Lname" : "Singh",
+	"Age" : 20,
+	"Email" : "chavi@gmail.com",
+	"Phone" : "7645747889",
+	"exp" : 5
+}
+{
+	"_id" : 6,
+	"Fname" : "Jothsna",
+	"Lname" : "Sai",
+	"Age" : 22,
+	"Email" : "jothsna@gmail.com",
+	"Phone" : "98776508001",
+	"exp" : 6
+}
+{
+	"_id" : 7,
+	"Fname" : "Aishwarya",
+	"Lname" : "G",
+	"Age" : 19,
+	"Email" : "aishwarya@gmail.com",
+	"Phone" : "998345901",
+	"exp" : 3
+}
+{
+	"_id" : 8,
+	"Fname" : "Hazel",
+	"Lname" : "Grace",
+	"Age" : 18,
+	"Email" : "hazel@gmail.com",
+	"Phone" : "9647978624",
+	"exp" : 1
+}
+{
+	"_id" : 9,
+	"Fname" : "Apoorva",
+	"Lname" : "Vinod",
+	"Age" : 25,
+	"Email" : "apoorva@gmail.com",
+	"Phone" : "9878676856",
+	"exp" : 4
+}
+{
+	"_id" : 10,
+	"Fname" : "Bhyravi",
+	"Lname" : "C",
+	"Age" : 27,
+	"Email" : "bhyravi@gmail.com",
+	"Phone" : "96777889",
+	"exp" : 6
+}
+> db.empDetails.save({_id:10,Fname:"Riya",Lname:"S",Age:28,Email:"riya@gmail.com",Phone:"84665387",exp:7})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.empDetails.find().pretty()
+{
+	"_id" : 1,
+	"Fname" : "Rohan",
+	"Lname" : "Sharma",
+	"Age" : 26,
+	"Email" : "rohan@gmail.com",
+	"Phone" : "9007008001",
+	"exp" : 5
+}
+{
+	"_id" : 2,
+	"Fname" : "Rachel",
+	"Lname" : "Green",
+	"Age" : 23,
+	"Email" : "rachel@gmail.com",
+	"Phone" : "9997658001",
+	"exp" : 6
+}
+{
+	"_id" : 3,
+	"Fname" : "Aditya",
+	"Lname" : "Nayak",
+	"Age" : 22,
+	"Email" : "aditya@gmail.com",
+	"Phone" : "964574324",
+	"exp" : 3
+}
+{
+	"_id" : 4,
+	"Fname" : "Joey",
+	"Lname" : "Tribbiani",
+	"Age" : 27,
+	"Email" : "joey@gmail.com",
+	"Phone" : "989697856",
+	"exp" : 5
+}
+{
+	"_id" : 5,
+	"Fname" : "Chavi",
+	"Lname" : "Singh",
+	"Age" : 20,
+	"Email" : "chavi@gmail.com",
+	"Phone" : "7645747889",
+	"exp" : 5
+}
+{
+	"_id" : 6,
+	"Fname" : "Jothsna",
+	"Lname" : "Sai",
+	"Age" : 22,
+	"Email" : "jothsna@gmail.com",
+	"Phone" : "98776508001",
+	"exp" : 6
+}
+{
+	"_id" : 7,
+	"Fname" : "Aishwarya",
+	"Lname" : "G",
+	"Age" : 19,
+	"Email" : "aishwarya@gmail.com",
+	"Phone" : "998345901",
+	"exp" : 3
+}
+{
+	"_id" : 8,
+	"Fname" : "Hazel",
+	"Lname" : "Grace",
+	"Age" : 18,
+	"Email" : "hazel@gmail.com",
+	"Phone" : "9647978624",
+	"exp" : 1
+}
+{
+	"_id" : 9,
+	"Fname" : "Apoorva",
+	"Lname" : "Vinod",
+	"Age" : 25,
+	"Email" : "apoorva@gmail.com",
+	"Phone" : "9878676856",
+	"exp" : 4
+}
+{
+	"_id" : 10,
+	"Fname" : "Riya",
+	"Lname" : "S",
+	"Age" : 28,
+	"Email" : "riya@gmail.com",
+	"Phone" : "84665387",
+	"exp" : 7
+}
+> db.empDetails.find({Fname:"Rachel"})
+{ "_id" : 2, "Fname" : "Rachel", "Lname" : "Green", "Age" : 23, "Email" : "rachel@gmail.com", "Phone" : "9997658001", "exp" : 6 }
+> db.empDetails.find({$and:[{Lname:"Nayak"},{exp:5}]})
+> db.empDetails.find({$and:[{Lname:"Nayak"},{exp:3}]})
+{ "_id" : 3, "Fname" : "Aditya", "Lname" : "Nayak", "Age" : 22, "Email" : "aditya@gmail.com", "Phone" : "964574324", "exp" : 3 }
+> db.empDetails.find({$or:[{exp:5},{exp:6}]})
+{ "_id" : 1, "Fname" : "Rohan", "Lname" : "Sharma", "Age" : 26, "Email" : "rohan@gmail.com", "Phone" : "9007008001", "exp" : 5 }
+{ "_id" : 2, "Fname" : "Rachel", "Lname" : "Green", "Age" : 23, "Email" : "rachel@gmail.com", "Phone" : "9997658001", "exp" : 6 }
+{ "_id" : 4, "Fname" : "Joey", "Lname" : "Tribbiani", "Age" : 27, "Email" : "joey@gmail.com", "Phone" : "989697856", "exp" : 5 }
+{ "_id" : 5, "Fname" : "Chavi", "Lname" : "Singh", "Age" : 20, "Email" : "chavi@gmail.com", "Phone" : "7645747889", "exp" : 5 }
+{ "_id" : 6, "Fname" : "Jothsna", "Lname" : "Sai", "Age" : 22, "Email" : "jothsna@gmail.com", "Phone" : "98776508001", "exp" : 6 }
+> 
+> 
+> db.empDetails.find({Age:{$not:{$gt:24}}})
+{ "_id" : 2, "Fname" : "Rachel", "Lname" : "Green", "Age" : 23, "Email" : "rachel@gmail.com", "Phone" : "9997658001", "exp" : 6 }
+{ "_id" : 3, "Fname" : "Aditya", "Lname" : "Nayak", "Age" : 22, "Email" : "aditya@gmail.com", "Phone" : "964574324", "exp" : 3 }
+{ "_id" : 5, "Fname" : "Chavi", "Lname" : "Singh", "Age" : 20, "Email" : "chavi@gmail.com", "Phone" : "7645747889", "exp" : 5 }
+{ "_id" : 6, "Fname" : "Jothsna", "Lname" : "Sai", "Age" : 22, "Email" : "jothsna@gmail.com", "Phone" : "98776508001", "exp" : 6 }
+{ "_id" : 7, "Fname" : "Aishwarya", "Lname" : "G", "Age" : 19, "Email" : "aishwarya@gmail.com", "Phone" : "998345901", "exp" : 3 }
+{ "_id" : 8, "Fname" : "Hazel", "Lname" : "Grace", "Age" : 18, "Email" : "hazel@gmail.com", "Phone" : "9647978624", "exp" : 1 }
+> 
+> 
+> db.empDetails.find({Age:{$not:{Age:20}}})
+Error: error: {
+	"ok" : 0,
+	"errmsg" : "unknown operator: Age",
+	"code" : 2,
+	"codeName" : "BadValue"
+}
+> db.empDetails.find({Age:{$ne:{Age:20}}})
+{ "_id" : 1, "Fname" : "Rohan", "Lname" : "Sharma", "Age" : 26, "Email" : "rohan@gmail.com", "Phone" : "9007008001", "exp" : 5 }
+{ "_id" : 2, "Fname" : "Rachel", "Lname" : "Green", "Age" : 23, "Email" : "rachel@gmail.com", "Phone" : "9997658001", "exp" : 6 }
+{ "_id" : 3, "Fname" : "Aditya", "Lname" : "Nayak", "Age" : 22, "Email" : "aditya@gmail.com", "Phone" : "964574324", "exp" : 3 }
+{ "_id" : 4, "Fname" : "Joey", "Lname" : "Tribbiani", "Age" : 27, "Email" : "joey@gmail.com", "Phone" : "989697856", "exp" : 5 }
+{ "_id" : 5, "Fname" : "Chavi", "Lname" : "Singh", "Age" : 20, "Email" : "chavi@gmail.com", "Phone" : "7645747889", "exp" : 5 }
+{ "_id" : 6, "Fname" : "Jothsna", "Lname" : "Sai", "Age" : 22, "Email" : "jothsna@gmail.com", "Phone" : "98776508001", "exp" : 6 }
+{ "_id" : 7, "Fname" : "Aishwarya", "Lname" : "G", "Age" : 19, "Email" : "aishwarya@gmail.com", "Phone" : "998345901", "exp" : 3 }
+{ "_id" : 8, "Fname" : "Hazel", "Lname" : "Grace", "Age" : 18, "Email" : "hazel@gmail.com", "Phone" : "9647978624", "exp" : 1 }
+{ "_id" : 9, "Fname" : "Apoorva", "Lname" : "Vinod", "Age" : 25, "Email" : "apoorva@gmail.com", "Phone" : "9878676856", "exp" : 4 }
+{ "_id" : 10, "Fname" : "Riya", "Lname" : "S", "Age" : 28, "Email" : "riya@gmail.com", "Phone" : "84665387", "exp" : 7 }
+> db.empDetails.find({Age:{$ne:{Age:20}}}).pretty()
+{
+	"_id" : 1,
+	"Fname" : "Rohan",
+	"Lname" : "Sharma",
+	"Age" : 26,
+	"Email" : "rohan@gmail.com",
+	"Phone" : "9007008001",
+	"exp" : 5
+}
+{
+	"_id" : 2,
+	"Fname" : "Rachel",
+	"Lname" : "Green",
+	"Age" : 23,
+	"Email" : "rachel@gmail.com",
+	"Phone" : "9997658001",
+	"exp" : 6
+}
+{
+	"_id" : 3,
+	"Fname" : "Aditya",
+	"Lname" : "Nayak",
+	"Age" : 22,
+	"Email" : "aditya@gmail.com",
+	"Phone" : "964574324",
+	"exp" : 3
+}
+{
+	"_id" : 4,
+	"Fname" : "Joey",
+	"Lname" : "Tribbiani",
+	"Age" : 27,
+	"Email" : "joey@gmail.com",
+	"Phone" : "989697856",
+	"exp" : 5
+}
+{
+	"_id" : 5,
+	"Fname" : "Chavi",
+	"Lname" : "Singh",
+	"Age" : 20,
+	"Email" : "chavi@gmail.com",
+	"Phone" : "7645747889",
+	"exp" : 5
+}
+{
+	"_id" : 6,
+	"Fname" : "Jothsna",
+	"Lname" : "Sai",
+	"Age" : 22,
+	"Email" : "jothsna@gmail.com",
+	"Phone" : "98776508001",
+	"exp" : 6
+}
+{
+	"_id" : 7,
+	"Fname" : "Aishwarya",
+	"Lname" : "G",
+	"Age" : 19,
+	"Email" : "aishwarya@gmail.com",
+	"Phone" : "998345901",
+	"exp" : 3
+}
+{
+	"_id" : 8,
+	"Fname" : "Hazel",
+	"Lname" : "Grace",
+	"Age" : 18,
+	"Email" : "hazel@gmail.com",
+	"Phone" : "9647978624",
+	"exp" : 1
+}
+{
+	"_id" : 9,
+	"Fname" : "Apoorva",
+	"Lname" : "Vinod",
+	"Age" : 25,
+	"Email" : "apoorva@gmail.com",
+	"Phone" : "9878676856",
+	"exp" : 4
+}
+{
+	"_id" : 10,
+	"Fname" : "Riya",
+	"Lname" : "S",
+	"Age" : 28,
+	"Email" : "riya@gmail.com",
+	"Phone" : "84665387",
+	"exp" : 7
+}
+> db.empDetails.find({Age:{$lte:{Age:20}}}).pretty()
+> db.empDetails.find({Age:{$lte:20}}).pretty()
+{
+	"_id" : 5,
+	"Fname" : "Chavi",
+	"Lname" : "Singh",
+	"Age" : 20,
+	"Email" : "chavi@gmail.com",
+	"Phone" : "7645747889",
+	"exp" : 5
+}
+{
+	"_id" : 7,
+	"Fname" : "Aishwarya",
+	"Lname" : "G",
+	"Age" : 19,
+	"Email" : "aishwarya@gmail.com",
+	"Phone" : "998345901",
+	"exp" : 3
+}
+{
+	"_id" : 8,
+	"Fname" : "Hazel",
+	"Lname" : "Grace",
+	"Age" : 18,
+	"Email" : "hazel@gmail.com",
+	"Phone" : "9647978624",
+	"exp" : 1
+}
+> db.empDetails.find({_id:{$ne:1}}).pretty()
+{
+	"_id" : 2,
+	"Fname" : "Rachel",
+	"Lname" : "Green",
+	"Age" : 23,
+	"Email" : "rachel@gmail.com",
+	"Phone" : "9997658001",
+	"exp" : 6
+}
+{
+	"_id" : 3,
+	"Fname" : "Aditya",
+	"Lname" : "Nayak",
+	"Age" : 22,
+	"Email" : "aditya@gmail.com",
+	"Phone" : "964574324",
+	"exp" : 3
+}
+{
+	"_id" : 4,
+	"Fname" : "Joey",
+	"Lname" : "Tribbiani",
+	"Age" : 27,
+	"Email" : "joey@gmail.com",
+	"Phone" : "989697856",
+	"exp" : 5
+}
+{
+	"_id" : 5,
+	"Fname" : "Chavi",
+	"Lname" : "Singh",
+	"Age" : 20,
+	"Email" : "chavi@gmail.com",
+	"Phone" : "7645747889",
+	"exp" : 5
+}
+{
+	"_id" : 6,
+	"Fname" : "Jothsna",
+	"Lname" : "Sai",
+	"Age" : 22,
+	"Email" : "jothsna@gmail.com",
+	"Phone" : "98776508001",
+	"exp" : 6
+}
+{
+	"_id" : 7,
+	"Fname" : "Aishwarya",
+	"Lname" : "G",
+	"Age" : 19,
+	"Email" : "aishwarya@gmail.com",
+	"Phone" : "998345901",
+	"exp" : 3
+}
+{
+	"_id" : 8,
+	"Fname" : "Hazel",
+	"Lname" : "Grace",
+	"Age" : 18,
+	"Email" : "hazel@gmail.com",
+	"Phone" : "9647978624",
+	"exp" : 1
+}
+{
+	"_id" : 9,
+	"Fname" : "Apoorva",
+	"Lname" : "Vinod",
+	"Age" : 25,
+	"Email" : "apoorva@gmail.com",
+	"Phone" : "9878676856",
+	"exp" : 4
+}
+{
+	"_id" : 10,
+	"Fname" : "Riya",
+	"Lname" : "S",
+	"Age" : 28,
+	"Email" : "riya@gmail.com",
+	"Phone" : "84665387",
+	"exp" : 7
+}
+> db.empDetails.find({Age:{$ne:20}}).pretty()
+{
+	"_id" : 1,
+	"Fname" : "Rohan",
+	"Lname" : "Sharma",
+	"Age" : 26,
+	"Email" : "rohan@gmail.com",
+	"Phone" : "9007008001",
+	"exp" : 5
+}
+{
+	"_id" : 2,
+	"Fname" : "Rachel",
+	"Lname" : "Green",
+	"Age" : 23,
+	"Email" : "rachel@gmail.com",
+	"Phone" : "9997658001",
+	"exp" : 6
+}
+{
+	"_id" : 3,
+	"Fname" : "Aditya",
+	"Lname" : "Nayak",
+	"Age" : 22,
+	"Email" : "aditya@gmail.com",
+	"Phone" : "964574324",
+	"exp" : 3
+}
+{
+	"_id" : 4,
+	"Fname" : "Joey",
+	"Lname" : "Tribbiani",
+	"Age" : 27,
+	"Email" : "joey@gmail.com",
+	"Phone" : "989697856",
+	"exp" : 5
+}
+{
+	"_id" : 6,
+	"Fname" : "Jothsna",
+	"Lname" : "Sai",
+	"Age" : 22,
+	"Email" : "jothsna@gmail.com",
+	"Phone" : "98776508001",
+	"exp" : 6
+}
+{
+	"_id" : 7,
+	"Fname" : "Aishwarya",
+	"Lname" : "G",
+	"Age" : 19,
+	"Email" : "aishwarya@gmail.com",
+	"Phone" : "998345901",
+	"exp" : 3
+}
+{
+	"_id" : 8,
+	"Fname" : "Hazel",
+	"Lname" : "Grace",
+	"Age" : 18,
+	"Email" : "hazel@gmail.com",
+	"Phone" : "9647978624",
+	"exp" : 1
+}
+{
+	"_id" : 9,
+	"Fname" : "Apoorva",
+	"Lname" : "Vinod",
+	"Age" : 25,
+	"Email" : "apoorva@gmail.com",
+	"Phone" : "9878676856",
+	"exp" : 4
+}
+{
+	"_id" : 10,
+	"Fname" : "Riya",
+	"Lname" : "S",
+	"Age" : 28,
+	"Email" : "riya@gmail.com",
+	"Phone" : "84665387",
+	"exp" : 7
+}
+
