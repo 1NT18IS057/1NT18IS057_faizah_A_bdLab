@@ -33,6 +33,9 @@ local   0.000GB
 mydb    0.000GB
 newdb   0.000GB
 test    0.000GB
+
+Q1.)Create a database called company with atleast 10 documents with the collection name empDetails
+
 > use company
 switched to db company
 > db.createCollection(“empDetails”);
@@ -62,8 +65,13 @@ uncaught exception: SyntaxError: missing ) after argument list :
 { "acknowledged" : true, "insertedIds" : [ 6, 7, 8, 9, 10 ] }
 > 
 > 
+
+Q2.)create an empty collection with the name test .
 > db.createCollection("test")
 { "ok" : 1 }
+
+Q3.)list all the documents in a collection called test
+
 > db.test.find()
 > db.test.find()
 > db.test.find({id)
@@ -73,8 +81,14 @@ uncaught exception: SyntaxError: missing ) after argument list :
 ... 
 > 
 > 
+
+Q4.)drop collection test
+
 > db.test.drop()
 true
+
+Q5.)display all documents in empDetails in a formatted way.
+
 > db.empDetails.find().pretty()
 {
 	"_id" : 1,
@@ -166,6 +180,9 @@ true
 	"Phone" : "96777889",
 	"exp" : 6
 }
+
+Q6)Insert new document to empDetails with save method and replace the document with same name
+
 > db.empDetails.save({_id:10,Fname:"Riya",Lname:"S",Age:28,Email:"riya@gmail.com",Phone:"84665387",exp:7})
 WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
 > db.empDetails.find().pretty()
@@ -259,11 +276,23 @@ WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
 	"Phone" : "84665387",
 	"exp" : 7
 }
+
+Q7.)list all the details of employee with employee name "Rachel".
+
 > db.empDetails.find({Fname:"Rachel"})
 { "_id" : 2, "Fname" : "Rachel", "Lname" : "Green", "Age" : 23, "Email" : "rachel@gmail.com", "Phone" : "9997658001", "exp" : 6 }
+
+Q8.)retrieve the details of employee whose Lname is "Nayak" and exp=3.
+
 > db.empDetails.find({$and:[{Lname:"Nayak"},{exp:5}]})
 > db.empDetails.find({$and:[{Lname:"Nayak"},{exp:3}]})
 { "_id" : 3, "Fname" : "Aditya", "Lname" : "Nayak", "Age" : 22, "Email" : "aditya@gmail.com", "Phone" : "964574324", "exp" : 3 }
+
+
+
+Q9.)retrieve the details of employees whose experience is 5 or 6 years
+
+
 > db.empDetails.find({$or:[{exp:5},{exp:6}]})
 { "_id" : 1, "Fname" : "Rohan", "Lname" : "Sharma", "Age" : 26, "Email" : "rohan@gmail.com", "Phone" : "9007008001", "exp" : 5 }
 { "_id" : 2, "Fname" : "Rachel", "Lname" : "Green", "Age" : 23, "Email" : "rachel@gmail.com", "Phone" : "9997658001", "exp" : 6 }
@@ -272,6 +301,9 @@ WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
 { "_id" : 6, "Fname" : "Jothsna", "Lname" : "Sai", "Age" : 22, "Email" : "jothsna@gmail.com", "Phone" : "98776508001", "exp" : 6 }
 > 
 > 
+
+Q10.)retrieve the details of employees whose age is not more than 24 years
+
 > db.empDetails.find({Age:{$not:{$gt:24}}})
 { "_id" : 2, "Fname" : "Rachel", "Lname" : "Green", "Age" : 23, "Email" : "rachel@gmail.com", "Phone" : "9997658001", "exp" : 6 }
 { "_id" : 3, "Fname" : "Aditya", "Lname" : "Nayak", "Age" : 22, "Email" : "aditya@gmail.com", "Phone" : "964574324", "exp" : 3 }
@@ -281,6 +313,9 @@ WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
 { "_id" : 8, "Fname" : "Hazel", "Lname" : "Grace", "Age" : 18, "Email" : "hazel@gmail.com", "Phone" : "9647978624", "exp" : 1 }
 > 
 > 
+
+Q11.)retrieve the details of employee whose age is not equal to 20
+
 > db.empDetails.find({Age:{$not:{Age:20}}})
 Error: error: {
 	"ok" : 0,
@@ -390,6 +425,9 @@ Error: error: {
 	"Phone" : "84665387",
 	"exp" : 7
 }
+
+Q12)retrieve the details of employees whose age is less than or equal to 20 years
+
 > db.empDetails.find({Age:{$lte:{Age:20}}}).pretty()
 > db.empDetails.find({Age:{$lte:20}}).pretty()
 {
@@ -419,6 +457,10 @@ Error: error: {
 	"Phone" : "9647978624",
 	"exp" : 1
 }
+
+Q13.)retrieve employee details such that their employee id is not equal to 1
+
+
 > db.empDetails.find({_id:{$ne:1}}).pretty()
 {
 	"_id" : 2,
