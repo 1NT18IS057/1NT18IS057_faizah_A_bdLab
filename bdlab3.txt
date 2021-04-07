@@ -45,12 +45,18 @@ uncaught exception: TypeError: db.createcollection is not a function :
 > db.customers.insertMany([{_id:1,cust_id:"a123",amt:500,status:"A"},{_id:2,cust_id:"a123",amt:250,status:"A"},{_id:3,cust_id:"b123",amt:200,status:"A"},{_id:4,cust_id:"a123",amt:300,status:"D"}])
 { "acknowledged" : true, "insertedIds" : [ 1, 2, 3, 4 ] }
 > 
+
+Q1.)retrieve all the customers whose account status is active(A)
+
 > db.customers.aggregate([{$match:{status:"A"}}])
 { "_id" : 1, "cust_id" : "a123", "amt" : 500, "status" : "A" }
 { "_id" : 2, "cust_id" : "a123", "amt" : 250, "status" : "A" }
 { "_id" : 3, "cust_id" : "b123", "amt" : 200, "status" : "A" }
 > 
 > 
+
+Q2.)retrieve all the customers who has maximum amount in the account
+
 > db.customers.aggregate({$group:{_id:"$cust_id","max_val":{$max:"$amt"}}}])
 uncaught exception: SyntaxError: missing ) after argument list :
 @(shell):1:72
@@ -70,11 +76,17 @@ uncaught exception: SyntaxError: missing ) after argument list :
 { "_id" : "_id", "max_val" : 500 }
 > 
 > 
+
+Q3.)for each customer count the number of account status
+
 > db.customers.aggregate([{$group:{_id:"$cust_id",count:{$sum:1}}}])
 { "_id" : "a123", "count" : 3 }
 { "_id" : "b123", "count" : 1 }
 > 
 > 
+
+Q4.)retrieve only the customer id and status fields
+
 > db.customers.aggregate([{$project:{cust_id:1,status:1}}])
 { "_id" : 1, "cust_id" : "a123", "status" : "A" }
 { "_id" : 2, "cust_id" : "a123", "status" : "A" }
@@ -82,6 +94,9 @@ uncaught exception: SyntaxError: missing ) after argument list :
 { "_id" : 4, "cust_id" : "a123", "status" : "D" }
 > 
 > 
+
+Q5.)retrieve the first 3 records from the customer collection
+
 > db.customers.aggregate([{$limit:3}])
 { "_id" : 1, "cust_id" : "a123", "amt" : 500, "status" : "A" }
 { "_id" : 2, "cust_id" : "a123", "amt" : 250, "status" : "A" }
@@ -94,7 +109,10 @@ uncaught exception: SyntaxError: missing ) after argument list :
 { "cust_id" : "b123", "status" : "A" }
 { "cust_id" : "a123", "status" : "D" }
 > 
-> 
+>
+
+Q6.)for every customers calculate the sum of amounts.
+
 > db.customers.aggregate([{$group:{_id:"$cust_id",{$sum:"$amt"}}}])
 uncaught exception: SyntaxError: expected property name, got '{' :
 @(shell):1:48
@@ -126,6 +144,10 @@ DBCollection.prototype.aggregate@src/mongo/shell/collection.js:1058:12
 { "_id" : "b123", "total_amt" : 200 }
 > 
 > 
+
+Q7.)retrieve all the customers with amount>=300.
+
+
 > db.customers.aggregate([{$match:{amt:{$gte:300}}}])
 { "_id" : 1, "cust_id" : "a123", "amt" : 500, "status" : "A" }
 { "_id" : 4, "cust_id" : "a123", "amt" : 300, "status" : "D" }
