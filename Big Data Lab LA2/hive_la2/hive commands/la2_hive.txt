@@ -1,0 +1,328 @@
+hive> 
+    > 
+    > 
+    > 
+    > create database if not exists EmployeeDB;
+OK
+Time taken: 0.081 seconds
+hive> show databases;
+OK
+bank_hive
+default
+employeedb
+Time taken: 0.035 seconds, Fetched: 3 row(s)
+hive> use employeedb;
+OK
+Time taken: 0.049 seconds
+hive> create table employee(name string,ssn int,salary int,address string,dname string,exp int) row format delimited fields terminated by ",";
+OK
+Time taken: 0.136 seconds
+hive> show tables;
+OK
+employee
+Time taken: 0.06 seconds, Fetched: 1 row(s)
+hive> insert into employee values("Kavya",5000,60000,"Bangalore","ISE",3),("Lishel",5001,25000,"Mumbai","CSE",6),("Chavi",5002,55000,"Bangalore","ISE",4),("Jothsna",5003,35000,"Hyderabad","CSE",7),("Aishwarya",5004,80000,"Pune","ECE",2); 
+Query ID = hdoop_20210707211609_8d3d102b-5094-425a-b46a-d89557fcfc87
+Total jobs = 3
+Launching Job 1 out of 3
+Number of reduce tasks determined at compile time: 1
+In order to change the average load for a reducer (in bytes):
+  set hive.exec.reducers.bytes.per.reducer=<number>
+In order to limit the maximum number of reducers:
+  set hive.exec.reducers.max=<number>
+In order to set a constant number of reducers:
+  set mapreduce.job.reduces=<number>
+Starting Job = job_1625642025578_0008, Tracking URL = http://hadoop-VirtualBox:8088/proxy/application_1625642025578_0008/
+Kill Command = /home/hdoop/hadoop-3.2.1/bin/mapred job  -kill job_1625642025578_0008
+Hadoop job information for Stage-1: number of mappers: 1; number of reducers: 1
+2021-07-07 21:16:23,820 Stage-1 map = 0%,  reduce = 0%
+2021-07-07 21:16:33,328 Stage-1 map = 100%,  reduce = 0%, Cumulative CPU 2.62 sec
+2021-07-07 21:16:41,703 Stage-1 map = 100%,  reduce = 100%, Cumulative CPU 4.49 sec
+MapReduce Total cumulative CPU time: 4 seconds 490 msec
+Ended Job = job_1625642025578_0008
+Stage-4 is selected by condition resolver.
+Stage-3 is filtered out by condition resolver.
+Stage-5 is filtered out by condition resolver.
+Moving data to directory hdfs://127.0.0.1:9000/user/hive/warehouse/employeedb.db/employee/.hive-staging_hive_2021-07-07_21-16-09_939_4423381433899221460-1/-ext-10000
+Loading data to table employeedb.employee
+MapReduce Jobs Launched: 
+Stage-Stage-1: Map: 1  Reduce: 1   Cumulative CPU: 4.49 sec   HDFS Read: 20956 HDFS Write: 671 SUCCESS
+Total MapReduce CPU Time Spent: 4 seconds 490 msec
+OK
+Time taken: 33.384 seconds
+hive> select * from employee;
+OK
+Kavya	5000	60000	Bangalore	ISE	3
+Lishel	5001	25000	Mumbai	CSE	6
+Chavi	5002	55000	Bangalore	ISE	4
+Jothsna	5003	35000	Hyderabad	CSE	7
+Aishwarya	5004	80000	Pune	ECE	2
+Time taken: 0.245 seconds, Fetched: 5 row(s)
+hive> 
+    > 
+    > desc employee;
+OK
+name                	string              	                    
+ssn                 	int                 	                    
+salary              	int                 	                    
+address             	string              	                    
+dname               	string              	                    
+exp                 	int                 	                    
+Time taken: 0.095 seconds, Fetched: 6 row(s)
+hive> LOAD DATA LOCAL INPATH '/home/hadoop/Downloads/dataset.csv' into table employee;
+Loading data to table employeedb.employee
+OK
+Time taken: 0.864 seconds
+hive> select * from employee;
+OK
+Kavya	5000	60000	Bangalore	ISE	3
+Lishel	5001	25000	Mumbai	CSE	6
+Chavi	5002	55000	Bangalore	ISE	4
+Jothsna	5003	35000	Hyderabad	CSE	7
+Aishwarya	5004	80000	Pune	ECE	2
+Anusha	6747	70000	Bangalore	ISE	5
+Avani	4325	30000	Kerala	CSE	3
+Deepti	7901	58000	Delhi	ISE	5
+Khushi	2135	25000	Punjab	ECE	2
+Monika	3984	67000	Kanpur	EEE	4
+Vanditha	1299	43000	Mumbai	ME	6
+Gaurav	7733	21000	Rajasthan	CSE	7
+Anjali	5231	65000	Bangalore	ISE	5
+Namitha	1177	54000	Pune	ECE	4
+Ajay	3662	73000	Chennai	EEE	6
+Akash	9815	20000	Bangalore	ISE	5
+Darshan	8000	45000	Kolkata	CSE	8
+Anish	3712	35000	Patna	AE	2
+Nandan	8868	15000	Bhopal	TC	3
+Purnima	6734	67000	Bangalore	ISE	5
+Sharada	4599	34000	Indore	CSE	2
+Pratik	2001	75000	Bangalore	ISE	5
+Pooja	6021	28000	Shimla	EEE	4
+Vikas	4378	32000	Agra	CSE	2
+Keerthi	1008	65000	Bangalore	ISE	5
+Sahana	4289	26000	Mangalore	EEE	4
+Deepak	6710	77000	Coimbatore	ECE	6
+Ujwal	3011	37000	Kochi	CSE	4
+Nithin	7888	32000	Goa	EEE	3
+Karthik	1671	80000	Bangalore	ISE	5
+Time taken: 0.275 seconds, Fetched: 30 row(s)
+hive> 
+    > alter table employee rename to emp;
+OK
+Time taken: 0.335 seconds
+hive> show tables;
+OK
+emp
+Time taken: 0.052 seconds, Fetched: 1 row(s)
+hive> select * from emp;
+OK
+Kavya	5000	60000	Bangalore	ISE	3
+Lishel	5001	25000	Mumbai	CSE	6
+Chavi	5002	55000	Bangalore	ISE	4
+Jothsna	5003	35000	Hyderabad	CSE	7
+Aishwarya	5004	80000	Pune	ECE	2
+Anusha	6747	70000	Bangalore	ISE	5
+Avani	4325	30000	Kerala	CSE	3
+Deepti	7901	58000	Delhi	ISE	5
+Khushi	2135	25000	Punjab	ECE	2
+Monika	3984	67000	Kanpur	EEE	4
+Vanditha	1299	43000	Mumbai	ME	6
+Gaurav	7733	21000	Rajasthan	CSE	7
+Anjali	5231	65000	Bangalore	ISE	5
+Namitha	1177	54000	Pune	ECE	4
+Ajay	3662	73000	Chennai	EEE	6
+Akash	9815	20000	Bangalore	ISE	5
+Darshan	8000	45000	Kolkata	CSE	8
+Anish	3712	35000	Patna	AE	2
+Nandan	8868	15000	Bhopal	TC	3
+Purnima	6734	67000	Bangalore	ISE	5
+Sharada	4599	34000	Indore	CSE	2
+Pratik	2001	75000	Bangalore	ISE	5
+Pooja	6021	28000	Shimla	EEE	4
+Vikas	4378	32000	Agra	CSE	2
+Keerthi	1008	65000	Bangalore	ISE	5
+Sahana	4289	26000	Mangalore	EEE	4
+Deepak	6710	77000	Coimbatore	ECE	6
+Ujwal	3011	37000	Kochi	CSE	4
+Nithin	7888	32000	Goa	EEE	3
+Karthik	1671	80000	Bangalore	ISE	5
+Time taken: 0.246 seconds, Fetched: 30 row(s)
+hive> 
+    > alter table emp change dname Dept_name string;
+OK
+Time taken: 0.179 seconds
+hive> desc emp;
+OK
+name                	string              	                    
+ssn                 	int                 	                    
+salary              	int                 	                    
+address             	string              	                    
+dept_name           	string              	                    
+exp                 	int                 	                    
+Time taken: 0.106 seconds, Fetched: 6 row(s)
+hive> 
+    > select * from emp where salary>=50000;
+OK
+Kavya	5000	60000	Bangalore	ISE	3
+Chavi	5002	55000	Bangalore	ISE	4
+Aishwarya	5004	80000	Pune	ECE	2
+Anusha	6747	70000	Bangalore	ISE	5
+Deepti	7901	58000	Delhi	ISE	5
+Monika	3984	67000	Kanpur	EEE	4
+Anjali	5231	65000	Bangalore	ISE	5
+Namitha	1177	54000	Pune	ECE	4
+Ajay	3662	73000	Chennai	EEE	6
+Purnima	6734	67000	Bangalore	ISE	5
+Pratik	2001	75000	Bangalore	ISE	5
+Keerthi	1008	65000	Bangalore	ISE	5
+Deepak	6710	77000	Coimbatore	ECE	6
+Karthik	1671	80000	Bangalore	ISE	5
+Time taken: 0.295 seconds, Fetched: 14 row(s)
+hive> 
+    > select * from emp where address="Bangalore" and exp<5;
+OK
+Kavya	5000	60000	Bangalore	ISE	3
+Chavi	5002	55000	Bangalore	ISE	4
+Time taken: 0.327 seconds, Fetched: 2 row(s)
+hive> 
+    > create view emp_dept as select name,dept_name from emp;
+OK
+Time taken: 0.264 seconds
+hive> show tables;
+OK
+emp
+emp_dept
+Time taken: 0.048 seconds, Fetched: 2 row(s)
+hive> select * from emp_dept;
+OK
+Kavya	ISE
+Lishel	CSE
+Chavi	ISE
+Jothsna	CSE
+Aishwarya	ECE
+Anusha	ISE
+Avani	CSE
+Deepti	ISE
+Khushi	ECE
+Monika	EEE
+Vanditha	ME
+Gaurav	CSE
+Anjali	ISE
+Namitha	ECE
+Ajay	EEE
+Akash	ISE
+Darshan	CSE
+Anish	AE
+Nandan	TC
+Purnima	ISE
+Sharada	CSE
+Pratik	ISE
+Pooja	EEE
+Vikas	CSE
+Keerthi	ISE
+Sahana	EEE
+Deepak	ECE
+Ujwal	CSE
+Nithin	EEE
+Karthik	ISE
+Time taken: 0.233 seconds, Fetched: 30 row(s)
+hive> 
+    > select name,ssn from emp group by ssn,name order by name;
+Query ID = hdoop_20210708102458_12b19b73-ccb6-4c17-bbbc-f0e83d644d7d
+Total jobs = 2
+Launching Job 1 out of 2
+Number of reduce tasks not specified. Estimated from input data size: 1
+In order to change the average load for a reducer (in bytes):
+  set hive.exec.reducers.bytes.per.reducer=<number>
+In order to limit the maximum number of reducers:
+  set hive.exec.reducers.max=<number>
+In order to set a constant number of reducers:
+  set mapreduce.job.reduces=<number>
+Starting Job = job_1625642025578_0009, Tracking URL = http://hadoop-VirtualBox:8088/proxy/application_1625642025578_0009/
+Kill Command = /home/hdoop/hadoop-3.2.1/bin/mapred job  -kill job_1625642025578_0009
+Hadoop job information for Stage-1: number of mappers: 1; number of reducers: 1
+2021-07-08 10:25:16,337 Stage-1 map = 0%,  reduce = 0%
+2021-07-08 10:25:24,901 Stage-1 map = 100%,  reduce = 0%, Cumulative CPU 2.08 sec
+2021-07-08 10:25:34,333 Stage-1 map = 100%,  reduce = 100%, Cumulative CPU 4.19 sec
+MapReduce Total cumulative CPU time: 4 seconds 190 msec
+Ended Job = job_1625642025578_0009
+Launching Job 2 out of 2
+Number of reduce tasks determined at compile time: 1
+In order to change the average load for a reducer (in bytes):
+  set hive.exec.reducers.bytes.per.reducer=<number>
+In order to limit the maximum number of reducers:
+  set hive.exec.reducers.max=<number>
+In order to set a constant number of reducers:
+  set mapreduce.job.reduces=<number>
+Starting Job = job_1625642025578_0010, Tracking URL = http://hadoop-VirtualBox:8088/proxy/application_1625642025578_0010/
+Kill Command = /home/hdoop/hadoop-3.2.1/bin/mapred job  -kill job_1625642025578_0010
+Hadoop job information for Stage-2: number of mappers: 1; number of reducers: 1
+2021-07-08 10:25:53,348 Stage-2 map = 0%,  reduce = 0%
+2021-07-08 10:26:01,908 Stage-2 map = 100%,  reduce = 0%, Cumulative CPU 1.84 sec
+2021-07-08 10:26:11,337 Stage-2 map = 100%,  reduce = 100%, Cumulative CPU 3.92 sec
+MapReduce Total cumulative CPU time: 3 seconds 920 msec
+Ended Job = job_1625642025578_0010
+MapReduce Jobs Launched: 
+Stage-Stage-1: Map: 1  Reduce: 1   Cumulative CPU: 4.19 sec   HDFS Read: 12805 HDFS Write: 908 SUCCESS
+Stage-Stage-2: Map: 1  Reduce: 1   Cumulative CPU: 3.92 sec   HDFS Read: 8318 HDFS Write: 809 SUCCESS
+Total MapReduce CPU Time Spent: 8 seconds 110 msec
+OK
+Aishwarya	5004
+Ajay	3662
+Akash	9815
+Anish	3712
+Anjali	5231
+Anusha	6747
+Avani	4325
+Chavi	5002
+Darshan	8000
+Deepak	6710
+Deepti	7901
+Gaurav	7733
+Jothsna	5003
+Karthik	1671
+Kavya	5000
+Keerthi	1008
+Khushi	2135
+Lishel	5001
+Monika	3984
+Namitha	1177
+Nandan	8868
+Nithin	7888
+Pooja	6021
+Pratik	2001
+Purnima	6734
+Sahana	4289
+Sharada	4599
+Ujwal	3011
+Vanditha	1299
+Vikas	4378
+Time taken: 74.877 seconds, Fetched: 30 row(s)
+hive> 
+    > 
+    > select max(salary),min(salary),avg(salary) from emp;
+Query ID = hdoop_20210708102704_319362e2-3c89-4cf6-90ec-34748ab4faf8
+Total jobs = 1
+Launching Job 1 out of 1
+Number of reduce tasks determined at compile time: 1
+In order to change the average load for a reducer (in bytes):
+  set hive.exec.reducers.bytes.per.reducer=<number>
+In order to limit the maximum number of reducers:
+  set hive.exec.reducers.max=<number>
+In order to set a constant number of reducers:
+  set mapreduce.job.reduces=<number>
+Starting Job = job_1625642025578_0011, Tracking URL = http://hadoop-VirtualBox:8088/proxy/application_1625642025578_0011/
+Kill Command = /home/hdoop/hadoop-3.2.1/bin/mapred job  -kill job_1625642025578_0011
+Hadoop job information for Stage-1: number of mappers: 1; number of reducers: 1
+2021-07-08 10:27:17,985 Stage-1 map = 0%,  reduce = 0%
+2021-07-08 10:27:26,451 Stage-1 map = 100%,  reduce = 0%, Cumulative CPU 2.02 sec
+2021-07-08 10:27:36,935 Stage-1 map = 100%,  reduce = 100%, Cumulative CPU 5.0 sec
+MapReduce Total cumulative CPU time: 5 seconds 0 msec
+Ended Job = job_1625642025578_0011
+MapReduce Jobs Launched: 
+Stage-Stage-1: Map: 1  Reduce: 1   Cumulative CPU: 5.0 sec   HDFS Read: 18239 HDFS Write: 130 SUCCESS
+Total MapReduce CPU Time Spent: 5 seconds 0 msec
+OK
+80000	15000	47633.333333333336
+Time taken: 34.083 seconds, Fetched: 1 row(s)
+
