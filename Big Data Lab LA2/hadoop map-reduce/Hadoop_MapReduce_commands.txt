@@ -1,0 +1,339 @@
+hadoop@hadoop-VirtualBox:~$ su - hdoop
+Password: 
+hdoop@hadoop-VirtualBox:~$ cd hadoop-3.2.1/sbin
+hdoop@hadoop-VirtualBox:~/hadoop-3.2.1/sbin$ ./start-all.sh
+WARNING: Attempting to start all Apache Hadoop daemons as hdoop in 10 seconds.
+WARNING: This is not a recommended production deployment configuration.
+WARNING: Use CTRL-C to abort.
+Starting namenodes on [localhost]
+Starting datanodes
+Starting secondary namenodes [hadoop-VirtualBox]
+Starting resourcemanager
+Starting nodemanagers
+hdoop@hadoop-VirtualBox:~/hadoop-3.2.1/sbin$ jps
+8192 DataNode
+8609 ResourceManager
+8737 NodeManager
+8364 SecondaryNameNode
+8062 NameNode
+8894 Jps
+hdoop@hadoop-VirtualBox:~$ cd /home/hadoop/Desktop
+hdoop@hadoop-VirtualBox:/home/hadoop/Desktop$ ls
+ dataset.csv                                          EmpExpclass.jar
+'Eclipse IDE for Java Developers - 2021-03.desktop'   EmpExp.jar
+ EmpAddressclass.jar                                  EmpISE.jar
+ EmpAddress.jar                                       Employee.jar
+hdoop@hadoop-VirtualBox:~/hadoop-3.2.1/sbin$ pwd
+/home/hdoop/hadoop-3.2.1/sbin
+hdoop@hadoop-VirtualBox:~/hadoop-3.2.1/sbin$ hadoop fs -mkdir -p /user/hdoop
+hdoop@hadoop-VirtualBox:~/hadoop-3.2.1/sbin$ hadoop fs -ls /user
+Found 2 items
+drwxr-xr-x   - hdoop supergroup          0 2021-07-10 12:09 /user/hdoop
+drwxr-xr-x   - hdoop supergroup          0 2021-07-05 21:50 /user/hive
+hdoop@hadoop-VirtualBox:~/hadoop-3.2.1/sbin$ hadoop fs -ls
+hdoop@hadoop-VirtualBox:~/hadoop-3.2.1/sbin$ hadoop fs -mkdir -p /user/hdoop/faizah
+hdoop@hadoop-VirtualBox:~/hadoop-3.2.1/sbin$ hadoop fs -ls
+Found 1 items
+drwxr-xr-x   - hdoop supergroup          0 2021-07-10 12:11 faizah
+hdoop@hadoop-VirtualBox:~/hadoop-3.2.1/sbin$ hadoop fs -copyFromLocal /home/hadoop/Desktop/dataset.csv
+2021-07-10 12:11:47,556 INFO sasl.SaslDataTransferClient: SASL encryption trust check: localHostTrusted = false, remoteHostTrusted = false
+hdoop@hadoop-VirtualBox:~/hadoop-3.2.1/sbin$ hadoop fs -ls
+Found 2 items
+-rw-r--r--   1 hdoop supergroup        823 2021-07-10 12:11 dataset.csv
+drwxr-xr-x   - hdoop supergroup          0 2021-07-10 12:11 faizah
+hdoop@hadoop-VirtualBox:~/hadoop-3.2.1/sbin$ hadoop jar Employee.jar Employee.EmpISE dataset.csv  EmpISE.txt
+JAR does not exist or is not a normal file: /home/hdoop/hadoop-3.2.1/sbin/Employee.jar
+hdoop@hadoop-VirtualBox:~/hadoop-3.2.1/sbin$ hadoop jar Employee.jar EmpISE dataset.csv  EmpISE.txt
+JAR does not exist or is not a normal file: /home/hdoop/hadoop-3.2.1/sbin/Employee.jar
+hdoop@hadoop-VirtualBox:~/hadoop-3.2.1/sbin$ 
+hdoop@hadoop-VirtualBox:~/hadoop-3.2.1/sbin$ hadoop jar Employee.jar EmpISE dataset.csv EmpISE.txt
+JAR does not exist or is not a normal file: /home/hdoop/hadoop-3.2.1/sbin/Employee.jar
+hdoop@hadoop-VirtualBox:~/hadoop-3.2.1/sbin$ hadoop jar /home/hadoop/Desktop/Employee.jar EmpISE dataset.csv EmpISE.txt
+2021-07-10 12:47:43,263 INFO client.RMProxy: Connecting to ResourceManager at /127.0.0.1:8032
+2021-07-10 12:47:43,623 INFO client.RMProxy: Connecting to ResourceManager at /127.0.0.1:8032
+2021-07-10 12:47:43,933 WARN mapreduce.JobResourceUploader: Hadoop command-line option parsing not performed. Implement the Tool interface and execute your application with ToolRunner to remedy this.
+2021-07-10 12:47:43,992 INFO mapreduce.JobResourceUploader: Disabling Erasure Coding for path: /tmp/hadoop-yarn/staging/hdoop/.staging/job_1625897933179_0001
+2021-07-10 12:47:44,243 INFO sasl.SaslDataTransferClient: SASL encryption trust check: localHostTrusted = false, remoteHostTrusted = false
+2021-07-10 12:47:44,468 INFO mapred.FileInputFormat: Total input files to process : 1
+2021-07-10 12:47:44,553 INFO sasl.SaslDataTransferClient: SASL encryption trust check: localHostTrusted = false, remoteHostTrusted = false
+2021-07-10 12:47:44,571 WARN hdfs.DataStreamer: Caught exception
+java.lang.InterruptedException
+	at java.lang.Object.wait(Native Method)
+	at java.lang.Thread.join(Thread.java:1252)
+	at java.lang.Thread.join(Thread.java:1326)
+	at org.apache.hadoop.hdfs.DataStreamer.closeResponder(DataStreamer.java:986)
+	at org.apache.hadoop.hdfs.DataStreamer.endBlock(DataStreamer.java:640)
+	at org.apache.hadoop.hdfs.DataStreamer.run(DataStreamer.java:810)
+2021-07-10 12:47:44,614 INFO sasl.SaslDataTransferClient: SASL encryption trust check: localHostTrusted = false, remoteHostTrusted = false
+2021-07-10 12:47:44,639 INFO mapreduce.JobSubmitter: number of splits:2
+2021-07-10 12:47:44,926 INFO sasl.SaslDataTransferClient: SASL encryption trust check: localHostTrusted = false, remoteHostTrusted = false
+2021-07-10 12:47:44,998 INFO mapreduce.JobSubmitter: Submitting tokens for job: job_1625897933179_0001
+2021-07-10 12:47:44,999 INFO mapreduce.JobSubmitter: Executing with tokens: []
+2021-07-10 12:47:45,383 INFO conf.Configuration: resource-types.xml not found
+2021-07-10 12:47:45,383 INFO resource.ResourceUtils: Unable to find 'resource-types.xml'.
+2021-07-10 12:47:45,786 INFO impl.YarnClientImpl: Submitted application application_1625897933179_0001
+2021-07-10 12:47:45,989 INFO mapreduce.Job: The url to track the job: http://hadoop-VirtualBox:8088/proxy/application_1625897933179_0001/
+2021-07-10 12:47:45,996 INFO mapreduce.Job: Running job: job_1625897933179_0001
+2021-07-10 12:47:58,362 INFO mapreduce.Job: Job job_1625897933179_0001 running in uber mode : false
+2021-07-10 12:47:58,363 INFO mapreduce.Job:  map 0% reduce 0%
+2021-07-10 12:48:09,554 INFO mapreduce.Job:  map 100% reduce 0%
+2021-07-10 12:48:16,638 INFO mapreduce.Job:  map 100% reduce 100%
+2021-07-10 12:48:17,664 INFO mapreduce.Job: Job job_1625897933179_0001 completed successfully
+2021-07-10 12:48:17,891 INFO mapreduce.Job: Counters: 54
+	File System Counters
+		FILE: Number of bytes read=120
+		FILE: Number of bytes written=677699
+		FILE: Number of read operations=0
+		FILE: Number of large read operations=0
+		FILE: Number of write operations=0
+		HDFS: Number of bytes read=1427
+		HDFS: Number of bytes written=53
+		HDFS: Number of read operations=11
+		HDFS: Number of large read operations=0
+		HDFS: Number of write operations=2
+		HDFS: Number of bytes read erasure-coded=0
+	Job Counters 
+		Launched map tasks=2
+		Launched reduce tasks=1
+		Data-local map tasks=2
+		Total time spent by all maps in occupied slots (ms)=17602
+		Total time spent by all reduces in occupied slots (ms)=4771
+		Total time spent by all map tasks (ms)=17602
+		Total time spent by all reduce tasks (ms)=4771
+		Total vcore-milliseconds taken by all map tasks=17602
+		Total vcore-milliseconds taken by all reduce tasks=4771
+		Total megabyte-milliseconds taken by all map tasks=18024448
+		Total megabyte-milliseconds taken by all reduce tasks=4885504
+	Map-Reduce Framework
+		Map input records=25
+		Map output records=8
+		Map output bytes=440
+		Map output materialized bytes=126
+		Input split bytes=192
+		Combine input records=8
+		Combine output records=2
+		Reduce input groups=1
+		Reduce shuffle bytes=126
+		Reduce input records=2
+		Reduce output records=1
+		Spilled Records=4
+		Shuffled Maps =2
+		Failed Shuffles=0
+		Merged Map outputs=2
+		GC time elapsed (ms)=379
+		CPU time spent (ms)=1620
+		Physical memory (bytes) snapshot=537788416
+		Virtual memory (bytes) snapshot=7447535616
+		Total committed heap usage (bytes)=355999744
+		Peak Map Physical memory (bytes)=211656704
+		Peak Map Virtual memory (bytes)=2479611904
+		Peak Reduce Physical memory (bytes)=115912704
+		Peak Reduce Virtual memory (bytes)=2488311808
+	Shuffle Errors
+		BAD_ID=0
+		CONNECTION=0
+		IO_ERROR=0
+		WRONG_LENGTH=0
+		WRONG_MAP=0
+		WRONG_REDUCE=0
+	File Input Format Counters 
+		Bytes Read=1235
+	File Output Format Counters 
+		Bytes Written=53
+hdoop@hadoop-VirtualBox:~/hadoop-3.2.1/sbin$ hadoop fs -ls EmpISE.txt
+Found 2 items
+-rw-r--r--   1 hdoop supergroup          0 2021-07-10 12:48 EmpISE.txt/_SUCCESS
+-rw-r--r--   1 hdoop supergroup         53 2021-07-10 12:48 EmpISE.txt/part-00000
+hdoop@hadoop-VirtualBox:~/hadoop-3.2.1/sbin$ hadoop fs -cat EmpISE.txt/part-00000
+2021-07-10 12:49:07,491 INFO sasl.SaslDataTransferClient: SASL encryption trust check: localHostTrusted = false, remoteHostTrusted = false
+Total no.of employees working in ISE Department : 	8
+hdoop@hadoop-VirtualBox:~/hadoop-3.2.1/sbin$ 
+hdoop@hadoop-VirtualBox:~/hadoop-3.2.1/sbin$ 
+hdoop@hadoop-VirtualBox:~/hadoop-3.2.1/sbin$ hadoop jar /home/hadoop/Desktop/EmpExperience.jar EmpExper dataset.csv EmpExp.txt
+2021-07-10 13:16:38,066 INFO client.RMProxy: Connecting to ResourceManager at /127.0.0.1:8032
+2021-07-10 13:16:38,543 INFO client.RMProxy: Connecting to ResourceManager at /127.0.0.1:8032
+2021-07-10 13:16:38,979 WARN mapreduce.JobResourceUploader: Hadoop command-line option parsing not performed. Implement the Tool interface and execute your application with ToolRunner to remedy this.
+2021-07-10 13:16:39,055 INFO mapreduce.JobResourceUploader: Disabling Erasure Coding for path: /tmp/hadoop-yarn/staging/hdoop/.staging/job_1625897933179_0002
+2021-07-10 13:16:39,317 INFO sasl.SaslDataTransferClient: SASL encryption trust check: localHostTrusted = false, remoteHostTrusted = false
+2021-07-10 13:16:39,589 INFO mapred.FileInputFormat: Total input files to process : 1
+2021-07-10 13:16:39,698 INFO sasl.SaslDataTransferClient: SASL encryption trust check: localHostTrusted = false, remoteHostTrusted = false
+2021-07-10 13:16:39,804 INFO sasl.SaslDataTransferClient: SASL encryption trust check: localHostTrusted = false, remoteHostTrusted = false
+2021-07-10 13:16:39,858 INFO mapreduce.JobSubmitter: number of splits:2
+2021-07-10 13:16:40,222 INFO sasl.SaslDataTransferClient: SASL encryption trust check: localHostTrusted = false, remoteHostTrusted = false
+2021-07-10 13:16:40,316 INFO mapreduce.JobSubmitter: Submitting tokens for job: job_1625897933179_0002
+2021-07-10 13:16:40,317 INFO mapreduce.JobSubmitter: Executing with tokens: []
+2021-07-10 13:16:40,763 INFO conf.Configuration: resource-types.xml not found
+2021-07-10 13:16:40,763 INFO resource.ResourceUtils: Unable to find 'resource-types.xml'.
+2021-07-10 13:16:40,920 INFO impl.YarnClientImpl: Submitted application application_1625897933179_0002
+2021-07-10 13:16:41,044 INFO mapreduce.Job: The url to track the job: http://hadoop-VirtualBox:8088/proxy/application_1625897933179_0002/
+2021-07-10 13:16:41,050 INFO mapreduce.Job: Running job: job_1625897933179_0002
+2021-07-10 13:16:51,614 INFO mapreduce.Job: Job job_1625897933179_0002 running in uber mode : false
+2021-07-10 13:16:51,617 INFO mapreduce.Job:  map 0% reduce 0%
+2021-07-10 13:17:04,875 INFO mapreduce.Job:  map 100% reduce 0%
+2021-07-10 13:17:13,048 INFO mapreduce.Job:  map 100% reduce 100%
+2021-07-10 13:17:14,071 INFO mapreduce.Job: Job job_1625897933179_0002 completed successfully
+2021-07-10 13:17:14,368 INFO mapreduce.Job: Counters: 54
+	File System Counters
+		FILE: Number of bytes read=126
+		FILE: Number of bytes written=677738
+		FILE: Number of read operations=0
+		FILE: Number of large read operations=0
+		FILE: Number of write operations=0
+		HDFS: Number of bytes read=1427
+		HDFS: Number of bytes written=56
+		HDFS: Number of read operations=11
+		HDFS: Number of large read operations=0
+		HDFS: Number of write operations=2
+		HDFS: Number of bytes read erasure-coded=0
+	Job Counters 
+		Launched map tasks=2
+		Launched reduce tasks=1
+		Data-local map tasks=2
+		Total time spent by all maps in occupied slots (ms)=22438
+		Total time spent by all reduces in occupied slots (ms)=5547
+		Total time spent by all map tasks (ms)=22438
+		Total time spent by all reduce tasks (ms)=5547
+		Total vcore-milliseconds taken by all map tasks=22438
+		Total vcore-milliseconds taken by all reduce tasks=5547
+		Total megabyte-milliseconds taken by all map tasks=22976512
+		Total megabyte-milliseconds taken by all reduce tasks=5680128
+	Map-Reduce Framework
+		Map input records=25
+		Map output records=8
+		Map output bytes=464
+		Map output materialized bytes=132
+		Input split bytes=192
+		Combine input records=8
+		Combine output records=2
+		Reduce input groups=1
+		Reduce shuffle bytes=132
+		Reduce input records=2
+		Reduce output records=1
+		Spilled Records=4
+		Shuffled Maps =2
+		Failed Shuffles=0
+		Merged Map outputs=2
+		GC time elapsed (ms)=361
+		CPU time spent (ms)=1760
+		Physical memory (bytes) snapshot=510971904
+		Virtual memory (bytes) snapshot=7447531520
+		Total committed heap usage (bytes)=355999744
+		Peak Map Physical memory (bytes)=197791744
+		Peak Map Virtual memory (bytes)=2479611904
+		Peak Reduce Physical memory (bytes)=115412992
+		Peak Reduce Virtual memory (bytes)=2488307712
+	Shuffle Errors
+		BAD_ID=0
+		CONNECTION=0
+		IO_ERROR=0
+		WRONG_LENGTH=0
+		WRONG_MAP=0
+		WRONG_REDUCE=0
+	File Input Format Counters 
+		Bytes Read=1235
+	File Output Format Counters 
+		Bytes Written=56
+hdoop@hadoop-VirtualBox:~/hadoop-3.2.1/sbin$ hadoop fs -ls EmpExp.txt
+Found 2 items
+-rw-r--r--   1 hdoop supergroup          0 2021-07-10 13:17 EmpExp.txt/_SUCCESS
+-rw-r--r--   1 hdoop supergroup         56 2021-07-10 13:17 EmpExp.txt/part-00000
+hdoop@hadoop-VirtualBox:~/hadoop-3.2.1/sbin$ hadoop fs -cat Empexp.txt/part-00000
+cat: `Empexp.txt/part-00000': No such file or directory
+hdoop@hadoop-VirtualBox:~/hadoop-3.2.1/sbin$ hadoop fs -cat EmpExp.txt/part-00000
+2021-07-10 13:18:08,341 INFO sasl.SaslDataTransferClient: SASL encryption trust check: localHostTrusted = false, remoteHostTrusted = false
+Total no.of employees having 5 years of experience : 	8
+hdoop@hadoop-VirtualBox:~/hadoop-3.2.1/sbin$ hadoop jar /home/hadoop/Desktop/EmpAddressBangalore.jar EmpAddr dataset.csv EmpAdd.txt
+2021-07-10 13:33:04,191 INFO client.RMProxy: Connecting to ResourceManager at /127.0.0.1:8032
+2021-07-10 13:33:04,664 INFO client.RMProxy: Connecting to ResourceManager at /127.0.0.1:8032
+2021-07-10 13:33:04,957 WARN mapreduce.JobResourceUploader: Hadoop command-line option parsing not performed. Implement the Tool interface and execute your application with ToolRunner to remedy this.
+2021-07-10 13:33:05,023 INFO mapreduce.JobResourceUploader: Disabling Erasure Coding for path: /tmp/hadoop-yarn/staging/hdoop/.staging/job_1625897933179_0003
+2021-07-10 13:33:05,312 INFO sasl.SaslDataTransferClient: SASL encryption trust check: localHostTrusted = false, remoteHostTrusted = false
+2021-07-10 13:33:05,609 INFO mapred.FileInputFormat: Total input files to process : 1
+2021-07-10 13:33:05,693 INFO sasl.SaslDataTransferClient: SASL encryption trust check: localHostTrusted = false, remoteHostTrusted = false
+2021-07-10 13:33:05,766 INFO sasl.SaslDataTransferClient: SASL encryption trust check: localHostTrusted = false, remoteHostTrusted = false
+2021-07-10 13:33:05,794 INFO mapreduce.JobSubmitter: number of splits:2
+2021-07-10 13:33:06,038 INFO sasl.SaslDataTransferClient: SASL encryption trust check: localHostTrusted = false, remoteHostTrusted = false
+2021-07-10 13:33:06,127 INFO mapreduce.JobSubmitter: Submitting tokens for job: job_1625897933179_0003
+2021-07-10 13:33:06,127 INFO mapreduce.JobSubmitter: Executing with tokens: []
+2021-07-10 13:33:06,532 INFO conf.Configuration: resource-types.xml not found
+2021-07-10 13:33:06,533 INFO resource.ResourceUtils: Unable to find 'resource-types.xml'.
+2021-07-10 13:33:06,658 INFO impl.YarnClientImpl: Submitted application application_1625897933179_0003
+2021-07-10 13:33:06,744 INFO mapreduce.Job: The url to track the job: http://hadoop-VirtualBox:8088/proxy/application_1625897933179_0003/
+2021-07-10 13:33:06,749 INFO mapreduce.Job: Running job: job_1625897933179_0003
+2021-07-10 13:33:17,074 INFO mapreduce.Job: Job job_1625897933179_0003 running in uber mode : false
+2021-07-10 13:33:17,078 INFO mapreduce.Job:  map 0% reduce 0%
+2021-07-10 13:33:27,336 INFO mapreduce.Job:  map 50% reduce 0%
+2021-07-10 13:33:28,433 INFO mapreduce.Job:  map 100% reduce 0%
+2021-07-10 13:33:35,550 INFO mapreduce.Job:  map 100% reduce 100%
+2021-07-10 13:33:36,575 INFO mapreduce.Job: Job job_1625897933179_0003 completed successfully
+2021-07-10 13:33:36,795 INFO mapreduce.Job: Counters: 54
+	File System Counters
+		FILE: Number of bytes read=114
+		FILE: Number of bytes written=677705
+		FILE: Number of read operations=0
+		FILE: Number of large read operations=0
+		FILE: Number of write operations=0
+		HDFS: Number of bytes read=1427
+		HDFS: Number of bytes written=50
+		HDFS: Number of read operations=11
+		HDFS: Number of large read operations=0
+		HDFS: Number of write operations=2
+		HDFS: Number of bytes read erasure-coded=0
+	Job Counters 
+		Launched map tasks=2
+		Launched reduce tasks=1
+		Data-local map tasks=2
+		Total time spent by all maps in occupied slots (ms)=17366
+		Total time spent by all reduces in occupied slots (ms)=4823
+		Total time spent by all map tasks (ms)=17366
+		Total time spent by all reduce tasks (ms)=4823
+		Total vcore-milliseconds taken by all map tasks=17366
+		Total vcore-milliseconds taken by all reduce tasks=4823
+		Total megabyte-milliseconds taken by all map tasks=17782784
+		Total megabyte-milliseconds taken by all reduce tasks=4938752
+	Map-Reduce Framework
+		Map input records=25
+		Map output records=7
+		Map output bytes=364
+		Map output materialized bytes=120
+		Input split bytes=192
+		Combine input records=7
+		Combine output records=2
+		Reduce input groups=1
+		Reduce shuffle bytes=120
+		Reduce input records=2
+		Reduce output records=1
+		Spilled Records=4
+		Shuffled Maps =2
+		Failed Shuffles=0
+		Merged Map outputs=2
+		GC time elapsed (ms)=417
+		CPU time spent (ms)=1650
+		Physical memory (bytes) snapshot=549564416
+		Virtual memory (bytes) snapshot=7447531520
+		Total committed heap usage (bytes)=355999744
+		Peak Map Physical memory (bytes)=217133056
+		Peak Map Virtual memory (bytes)=2479611904
+		Peak Reduce Physical memory (bytes)=115679232
+		Peak Reduce Virtual memory (bytes)=2488307712
+	Shuffle Errors
+		BAD_ID=0
+		CONNECTION=0
+		IO_ERROR=0
+		WRONG_LENGTH=0
+		WRONG_MAP=0
+		WRONG_REDUCE=0
+	File Input Format Counters 
+		Bytes Read=1235
+	File Output Format Counters 
+		Bytes Written=50
+hdoop@hadoop-VirtualBox:~/hadoop-3.2.1/sbin$ hadoop fs -ls EmpAdd.txt
+Found 2 items
+-rw-r--r--   1 hdoop supergroup          0 2021-07-10 13:33 EmpAdd.txt/_SUCCESS
+-rw-r--r--   1 hdoop supergroup         50 2021-07-10 13:33 EmpAdd.txt/part-00000
+hdoop@hadoop-VirtualBox:~/hadoop-3.2.1/sbin$ hadoop fs -cat EmpAdd.txt/part-00000
+2021-07-10 13:34:07,326 INFO sasl.SaslDataTransferClient: SASL encryption trust check: localHostTrusted = false, remoteHostTrusted = false
+Total no.of employees who stays in Bangalore : 	7
+hdoop@hadoop-VirtualBox:~/hadoop-3.2.1/sbin$ 
+
+
